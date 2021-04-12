@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg preserveAspectRatio="xMidYMid" viewBox="61.72 14.36 642.52 493.74" xmlns="http://www.w3.org/2000/svg">
+  <clipPath id="a">
+    <rect x=".85" y=".85" width="768.28" height="521.68"/>
+  </clipPath>
+  <g clip-path="url(#a)" transform="translate(3.0581 4.15)">
+    <text text-anchor="end" text-rendering="geometricPrecision">
+      <tspan x="97.74" y="106.09" fill="#000000" font-family="Arial" font-size="24">HO</tspan>
+    </text>
+    <path d="M98.29 91.92l-.42-.74-.43-.73 25.34-14.63v1.96zm24.49-14.14v-1.96l34.37 19.84v1.96zm34.37 19.84v-1.96l34.36-19.84v1.96z" fill-rule="evenodd" shape-rendering="geometricPrecision" stroke-width="0"/>
+    <text text-rendering="geometricPrecision">
+      <tspan x="217.88" y="106.09" fill="#000000" font-family="Arial" font-size="24">SH</tspan>
+    </text>
+    <path d="M191.51 77.78v-1.96l26.65 15.38-.43.74-.42.73z" fill-rule="evenodd" shape-rendering="geometricPrecision" stroke-width="0"/>
+    <line x1="468.37" x2="280.41" y1="91.48" y2="91.48" stroke="#000" stroke-width="1.7"/>
+    <path d="M489.69 91.48l-25.5-6.38c3.62 3.59 3.62 9.17 0 12.76z" fill-rule="evenodd" shape-rendering="geometricPrecision" stroke-miterlimit="19.637" stroke-width="0"/>
+    <text text-anchor="end" text-rendering="geometricPrecision">
+      <tspan x="336.42" y="59.28" fill="#000000" font-family="Arial" font-size="24">HO</tspan>
+    </text>
+    <path d="M336.99 45.1l-.42-.74-.43-.74 15.01-8.66v1.96zm14.16-8.18v-1.96l24.06 13.89v1.96zm24.06 13.89v-1.96l24.05-13.89v1.96z" fill-rule="evenodd" shape-rendering="geometricPrecision" stroke-width="0"/>
+    <text text-rendering="geometricPrecision">
+      <tspan x="415.32" y="59.28" fill="#000000" font-family="Arial" font-size="24">S</tspan>
+    </text>
+    <path d="M399.26 36.92v-1.96l16.3 9.41-.43.73-.42.74zm32.73 8.89l-.42-.74-.43-.74 6.67-3.85.42.74.43.74z" fill-rule="evenodd" shape-rendering="geometricPrecision" stroke-width="0"/>
+    <text text-rendering="geometricPrecision">
+      <tspan x="438.7" y="45.39" fill="#000000" font-family="Arial" font-size="24">Cl</tspan>
+    </text>
+    <path d="M468.67 16.06h4.58v51.75h-4.58m-178.34 0h-4.58V16.06h4.58" fill="none" shape-rendering="geometricPrecision" stroke="#000" stroke-width="1.7"/>
+    <text text-rendering="geometricPrecision">
+      <tspan x="633.32" y="93.09" fill="#000000" font-family="Arial" font-size="24">S</tspan>
+    </text>
+    <text text-rendering="geometricPrecision">
+      <tspan x="599.89" y="69.77" fill="#000000" font-family="Arial" font-size="24">O</tspan>
+    </text>
+    <path d="M576.11 83.32l2 .64 11.88 36.58-1.24 1.7z" fill-rule="evenodd" shape-rendering="geometricPrecision" stroke-width="0"/>
+    <path d="M588.75 122.24l1.24-1.7h38.45l1.24 1.7z" fill-rule="evenodd" shape-rendering="geometricPrecision" stroke-width="0"/>
+    <path d="M629.68 122.24l-1.24-1.7 8.27-25.44.8.26.81.26zm4.08-45.14l-.5.69-.5.68-14.52-10.55.5-.69.5-.68zm-34.4-10.67l.5.69.5.68-22.25 16.16-2-.64zm51.36 15.73l.53 1.62 18.58-6.04-.53-1.61zm-1.45-6.47l.53 1.62 18.58-6.03-.53-1.62z" fill-rule="evenodd" shape-rendering="geometricPrecision" stroke-width="0"/>
+    <text text-rendering="geometricPrecision">
+      <tspan x="669.74" y="80.83" fill="#000000" font-family="Arial" font-size="24">O</tspan>
+    </text>
+    <text text-anchor="end" text-rendering="geometricPrecision">
+      <tspan x="99.99" y="231.84" fill="#000000" font-family="Arial" font-size="24">HO</tspan>
+    </text>
+    <path d="M100.49 217.7l-.42-.74-.43-.74 25.39-14.65v1.96zm24.54-14.17v-1.96l34.37 19.84v.98l-.85.49zm35.22 19.35l-.85-.49v-.98l34.36-19.84v1.96z" fill-rule="evenodd" shape-rendering="geometricPrecision" stroke-width="0"/>
+    <text text-rendering="geometricPrecision">
+      <tspan x="220.13" y="231.84" fill="#000000" font-family="Arial" font-size="24">SH</tspan>
+    </text>
+    <path d="M193.76 203.53v-1.96l26.6 15.35-.43.74-.42.74z" fill-rule="evenodd" shape-rendering="geometricPrecision" stroke-width="0"/>
+    <line x1="470.62" x2="282.66" y1="246.84" y2="246.84" stroke="#000" stroke-width="1.7"/>
+    <path d="M491.94 246.84l-25.5-6.38c3.62 3.59 3.62 9.17 0 12.76z" fill-rule="evenodd" shape-rendering="geometricPrecision" stroke-miterlimit="19.637" stroke-width="0"/>
+    <path d="M158.55 222.88l.85-.49.85.49v38.71l-1.7.98z" fill-rule="evenodd" shape-rendering="geometricPrecision" stroke-width="0"/>
+    <text text-rendering="geometricPrecision">
+      <tspan x="185.09" y="291.37" fill="#000000" font-family="Arial" font-size="24">NHR</tspan>
+    </text>
+    <path d="M158.55 262.57l1.7-.98 25.21 14.56-.43.73-.42.74z" fill-rule="evenodd" shape-rendering="geometricPrecision" stroke-width="0"/>
+    <text text-rendering="geometricPrecision">
+      <tspan x="306.61" y="224.94" fill="#000000" font-family="'Times New Roman'" font-size="24">NCS oder NBS</tspan>
+    </text>
+    <text text-rendering="geometricPrecision">
+      <tspan x="634.63" y="215.23" fill="#000000" font-family="Arial" font-size="24">S</tspan>
+    </text>
+    <path d="M577.42 205.46l2 .64 11.88 36.57-.62.85-.94-.15z" fill-rule="evenodd" shape-rendering="geometricPrecision" stroke-width="0"/>
+    <text text-rendering="geometricPrecision">
+      <tspan x="601.2" y="191.9" fill="#000000" font-family="Arial" font-size="24">O</tspan>
+    </text>
+    <path d="M591.11 244.37l-.43-.85.62-.85h38.45l1.24 1.7z" fill-rule="evenodd" shape-rendering="geometricPrecision" stroke-width="0"/>
+    <path d="M630.99 244.37l-1.24-1.7 8.28-25.47.81.26.8.26zm4.07-45.14l-1 1.38-14.52-10.56 1-1.38zm-34.4-10.66l.5.69.5.68-22.24 16.16-2-.64z" fill-rule="evenodd" shape-rendering="geometricPrecision" stroke-width="0"/>
+    <text text-rendering="geometricPrecision">
+      <tspan x="671.05" y="202.97" fill="#000000" font-family="Arial" font-size="24">O</tspan>
+    </text>
+    <path d="M652.02 204.31l.53 1.61 18.58-6.03-.53-1.62zm-1.45-4.47l.53 1.61 18.58-6.03-.53-1.62zm-60.83 43.53l.94.15.43.85-22.77 31.36-1.96-.2z" fill-rule="evenodd" shape-rendering="geometricPrecision" stroke-width="0"/>
+    <text text-rendering="geometricPrecision">
+      <tspan x="574.82" y="321.33" fill="#000000" font-family="Arial" font-size="24">NHR</tspan>
+    </text>
+    <path d="M566.38 275.53l1.96.2 11.99 26.95-.77.35-.78.34z" fill-rule="evenodd" shape-rendering="geometricPrecision" stroke-width="0"/>
+    <text text-anchor="end" text-rendering="geometricPrecision">
+      <tspan x="99.24" y="481.23" fill="#000000" font-family="Arial" font-size="24">HO</tspan>
+    </text>
+    <path d="M99.79 467.06l-.42-.74-.43-.73 24.49-14.14.85.49v.98zm24.49-14.14v-.98l.85-.49 33.52 19.35v1.96zm34.37 19.84v-1.96l33.51-19.35.85.49v.98zm34.36-19.84v-.98h1.7l24.95 14.4-.43.74-.42.73z" fill-rule="evenodd" shape-rendering="geometricPrecision" stroke-width="0"/>
+    <text text-rendering="geometricPrecision">
+      <tspan x="219.38" y="481.23" fill="#000000" font-family="Arial" font-size="24">SH</tspan>
+    </text>
+    <text fill="#000000" font-family="Arial" text-rendering="geometricPrecision">
+      <tspan x="115.6" y="421.71" font-size="24">R</tspan><tspan dy="-7.5" font-size="18">2</tspan>
+    </text>
+    <text fill="#000000" font-family="Arial" text-rendering="geometricPrecision">
+      <tspan x="184.34" y="421.71" font-size="24">R</tspan><tspan dy="-7.5" font-size="18">1</tspan>
+    </text>
+    <text fill="#000000" font-family="Arial" text-rendering="geometricPrecision">
+      <tspan x="218.71" y="441.55" font-size="24">R</tspan><tspan dy="-7.5" font-size="18">1</tspan>
+    </text>
+    <path d="M194.71 451.94h-1.7l.85-1.47 24.35-14.06.42.74.43.73z" fill-rule="evenodd" shape-rendering="geometricPrecision" stroke-width="0"/>
+    <line x1="472.12" x2="284.16" y1="442.02" y2="442.02" stroke="#000" stroke-width="1.7"/>
+    <path d="M493.44 442.02l-25.5-6.38c3.62 3.59 3.62 9.17 0 12.76z" fill-rule="evenodd" shape-rendering="geometricPrecision" stroke-miterlimit="19.637" stroke-width="0"/>
+    <text text-rendering="geometricPrecision">
+      <tspan x="642.18" y="422.87" fill="#000000" font-family="Arial" font-size="24">S</tspan>
+    </text>
+    <text text-rendering="geometricPrecision">
+      <tspan x="608.75" y="399.54" fill="#000000" font-family="Arial" font-size="24">O</tspan>
+    </text>
+    <path d="M585.29 414.09l.67-.67 1 .32 11.89 36.57-1.24 1.7zm12.32 37.92l1.24-1.7h38.44l.62.85-.65.85zm41.39-1.44l-1.09.59-.62-.85 8.3-25.51.81.26.8.26zm3.66-43.66l-.5.69-.5.68-14.52-10.55 1-1.38z" fill-rule="evenodd" shape-rendering="geometricPrecision" stroke-width="0"/>
+    <path d="M608.26 396.16l1 1.38-22.3 16.2-1-.32-.15-.94z" fill-rule="evenodd" shape-rendering="geometricPrecision" stroke-width="0"/>
+    <text text-rendering="geometricPrecision">
+      <tspan x="678.59" y="410.61" fill="#000000" font-family="Arial" font-size="24">O</tspan>
+    </text>
+    <path d="M659.62 411.92l.53 1.62 18.48-6-.53-1.62zm-1.45-4.46l.53 1.62 18.48-6-.53-1.62zm-72.36 5.02l.15.94-.67.67-31.94-10.37.27-.81.26-.81z" fill-rule="evenodd" shape-rendering="geometricPrecision" stroke-width="0"/>
+    <text fill="#000000" font-family="Arial" text-anchor="end" text-rendering="geometricPrecision">
+      <tspan x="553.22" y="410.62" font-size="24">R</tspan><tspan dy="-7.5" font-size="18">2</tspan>
+    </text>
+    <path d="M637.26 452.01l.65-.85 1.2 1.2 7.24 27.03-1.64.44z" fill-rule="evenodd" shape-rendering="geometricPrecision" stroke-width="0"/>
+    <text fill="#000000" font-family="Arial" text-rendering="geometricPrecision">
+      <tspan x="639.51" y="498.95" font-size="24">R</tspan><tspan dy="-7.5" font-size="18">1</tspan>
+    </text>
+    <text fill="#000000" font-family="Arial" text-rendering="geometricPrecision">
+      <tspan x="667.57" y="470.89" font-size="24">R</tspan><tspan dy="-7.5" font-size="18">1</tspan>
+    </text>
+    <path d="M639.11 452.36l-1.2-1.2 1.09-.59 28.53 7.65-.22.82-.22.83z" fill-rule="evenodd" shape-rendering="geometricPrecision" stroke-width="0"/>
+    <text fill="#000000" font-family="'Times New Roman'" text-rendering="geometricPrecision">
+      <tspan x="350.86" y="420.69" font-size="24">NaIO</tspan><tspan dy="5.35" font-size="18">4</tspan>
+    </text>
+  </g>
+  <path d="M126.49 427.32l.85.006.848-.007v28.274l-.85.492-.848-.492zm68.73 0l.85.006.848-.007v28.274l-.85.492-.848-.492z" fill-rule="evenodd" shape-rendering="geometricPrecision" stroke-width="0"/>
+</svg>
