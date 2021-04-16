@@ -87,7 +87,7 @@
         #### References
         * Kiss, Miller, and Simon, "Mathematics of Epidemics on Networks: From Exact to Approximate Models", (Springer International Publishing, Cham, 2017).
         * Pastor-Satorras, Castellano, Van Mieghem, and Vespignani, Rev. Mod. Phys. (2015).
-        * additional sources of examples are referened at bottom of slides
+        * additional sources of examples are referenced at bottom of slides
     </div>
 </section>
 
@@ -627,7 +627,7 @@
                     vaccinated compartment can be enough.
                 </li>
                 <li class="fragment fade-in" data-fragment-index="3">
-                    If interested in spatial aspects (local outbreaks): Interaction network (!parameterized!) inlcuding
+                    If interested in spatial aspects (local outbreaks): Interaction network (!parameterized!) including
                     point of origin and stochastic effects.
                 </li>
                 <li class="fragment fade-in" data-fragment-index="4">
@@ -676,7 +676,7 @@
     <div style="position:absolute; top:15%; left:15%; width:70%; height:15%; text-align:left; border:0px; box-shadow:none; background:none;" data-markdown>
         #### What have we learned?
         * Models simplify reality on different levels (disease progression, spreading dynamics)
-        * Level of detail should be consistent (avoid making single compontent extremely realistic while keeping others utterly simple)
+        * Level of detail should be consistent (avoid making single component extremely realistic while keeping others utterly simple)
         * Simplifications have to be well motivated and re-evaluated when drawing conclusions
     </div>
 
@@ -732,7 +732,7 @@
         * Kiss, Miller, and Simon, "Mathematics of Epidemics on Networks: From Exact to Approximate Models", (Springer International Publishing, Cham, 2017).
         * Pastor-Satorras, Castellano, Van Mieghem, and Vespignani, Rev. Mod. Phys. (2015).
         * Gillespie, Stochastic Simulation of Chemical Kinetics, Annual Review of Physical Chemistry 58, 35 (2007).
-        * additional sources of examples are referened at bottom of slides
+        * additional sources of examples are referenced at bottom of slides
     </div>
 </section>
 
@@ -889,12 +889,12 @@
         <img src="./sources/kineticMonteCarlo_gillespie.svg" width=50%  style="border:0; box-shadow:none; position:absolute; top:12%; left:45%">
     </span>
 
-    <div style="position:absolute; top:25%; left:2.5%; width:52%; text-align:left">
+    <div style="position:absolute; top:25%; left:2.5%; width:55%; text-align:left">
         <span class="fragment fade-in" data-fragment-index="10">
             <b>Algorithm:</b>
         <br><br>
         <span class="fragment fade-in" data-fragment-index="11">
-            1. Create initial condition x(t)=[x_1,...x_n] at $t=t_0$
+            1. Create initial condition $x(t)=[x_1,...x_n]$ at $t=t_0$
         </span>
         <br><br>
         <span class="fragment fade-in" data-fragment-index="12">
@@ -1191,10 +1191,12 @@
         <img src="./sources/custom/code_kineticMC_SIR.png" height=100%  style="border:0; box-shadow:none; position:absolute; top:2%; left:10%">
     </span>
 
-    <span class="fragment fade-out" data-fragment-index="30">
+    <span class="fragment fade-out" data-fragment-index="31">
     <span class="fragment fade-in" data-fragment-index="10">
         <img src="./sources/custom/kineticMC_example_SIR_I0_1.png" width=45%  style="border:0; box-shadow:none; position:absolute; top:40%; left:5%">
     </span>
+    </span>
+    <span class="fragment fade-out" data-fragment-index="30">
     <span class="fragment fade-in-then-out" data-fragment-index="20">
         <img src="./sources/custom/kineticMC_example_SIR_I0_1_distribution_I.png" width=35%  style="border:0; box-shadow:none; position:absolute; top:37%; left:60%">
     </span>
@@ -1203,7 +1205,9 @@
     </span>
     </span>
     <span class="fragment fade-in" data-fragment-index="30">
-        <img src="./sources/custom/kineticMC_example_SIR_R2_I0_10_long.png" width=45%  style="border:0; box-shadow:none; position:absolute; top:40%; left:5%">
+        <span class="fragment fade-in" data-fragment-index="31">
+        <img src="./sources/custom/kineticMC_example_SIR_R2_I0_10_large.png" width=45%  style="border:0; box-shadow:none; position:absolute; top:40%; left:5%">
+        </span>
         <div style="position:absolute; top:50%; left: 50%; width:50%; text-align:left">
             If $I$ gets large enough, stochastic fluctuations cancel each other out the disease spread
             for a single realization can be described by the deterministic solution.<br>
