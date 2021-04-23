@@ -693,6 +693,7 @@
             Mod. Phys. 87, 925 (2015).
         </div>
     </span>
+
 </section>
 
 
@@ -933,7 +934,7 @@
         </span>
         <br>
         <span class="fragment fade-in" data-fragment-index="14">
-             $j$ s.t $\frac{1}{\sum_i a_i}\sum_{i=1}^j a_i \lt r_2\in[0,1)$
+            max $j$ s.t $\frac{1}{\sum_i a_i}\sum_{i=1}^{j-1} a_i \lt r_2\in[0,1)$
         </span>
         <br><br>
         <span class="fragment fade-in" data-fragment-index="15">
@@ -963,6 +964,13 @@
     <span class="fragment fade-out" data-fragment-index="10">
     <span class="fragment fade-in" data-fragment-index="1">
         <img src="./sources/custom/deterministic_SIS_full_lambda.png" style="border:0; box-shadow:none; position:absolute; top:45%; left:5%; width:40%;">
+        <span class="fragment fade-out" data-fragment-index="2">
+        <div style="position:absolute; top:50%; left:50%; width:50%; text-align:left">
+            $\dot{S} = -\lambda\frac{S}{N} I + \mu I$
+            <br><br>
+            $\dot{I} = +\lambda\frac{S}{N} I - \mu I$
+        </div>
+        </span>
     </span>
     <span class="fragment fade-in" data-fragment-index="2">
         <div style="position:absolute; top:50%; left:50%; width:50%; text-align:left">
@@ -1012,7 +1020,7 @@
         <br><br>
         <span class="fragment fade-in" data-fragment-index="2">
             Infectious period is exponentially distributed (Poisson process):<br>
-            $P(\Delta t) = \mu e^{-\mu\Delta t}$
+            $P(\Delta t, \mu) = \mu e^{-\mu\Delta t}$
         </span>
         <br><br>
         <span class="fragment fade-in" data-fragment-index="3">
@@ -1246,6 +1254,7 @@
 
 
 
+
 <!-- ############################################################################### -->
 <section>
     <h3>Outline</h3>
@@ -1269,11 +1278,1062 @@
 
 
 <!-- ############################################################################### -->
-<!-- ##################  Disease spread on complex networks  ####################### -->
+<!-- ##################  Disease spread on networks  ############################### -->
 <!-- ############################################################################### -->
 
 
+<section>
+    <h3>Disease spread on networks</h3>
+    <div style="position:absolute; top:15%; left:15%; width:70%; height:15%; text-align:left; border:0px; box-shadow:none; background:none;" data-markdown>
+        #### What we will talk about
+        * What changes from well-mixed to network description?
+        * What is a network and how can we characterize them?
+        * Some examples.
+    </div>
+    <div style="position:absolute; top:50%; left:15%; width:70%; text-align:left "class="fragment fade-in" data-fragment-index="2"  data-markdown>
+        #### References
+        * Pastor-Satorras, Castellano, Van Mieghem, and Vespignani, Rev. Mod. Phys. (2015).
+        * Kiss, Miller, and Simon, "Mathematics of Epidemics on Networks: From Exact to Approximate Models", (Springer International Publishing, Cham, 2017).
+        * additional sources of examples are referenced at bottom of slides
+    </div>
+</section>
 
+
+<section>
+    <h3>Let us recall the SIS model</h3>
+    <span class="fragment fade-in" data-fragment-index="1">
+    <div style="position:absolute; top:15%; left: 2%; width:46%; text-align:left">
+        Continuous-time Markov chain with system state $x(t) = [S,I](t)$ and
+        <br><br>
+        <div align=center>
+            $[S,I] \to [S+1,I-1]\,$ with rate $\,\mu I\phantom{\frac{S}{N}}$
+            <br>
+            $[S,I] \to [S-1,I+1]\,$ with rate  $\,\lambda I\frac{S}{N}$
+        </div>
+    </div>
+    </span>
+    <span class="fragment fade-in" data-fragment-index="2">
+    <div style="position:absolute; top:15%; left:52%; width:46%; text-align:left">
+        Deterministic formulation with set of differential equations
+        <br><br>
+        <div align=center>
+        $\dot{S} = -\lambda\frac{S}{N} I + \mu I$
+        <br>
+        $\dot{I} = +\lambda\frac{S}{N} I - \mu I$
+        </div>
+    </div>
+    </span>
+
+    <span class="fragment fade-in" data-fragment-index="3">
+        <img src="./sources/custom/kineticMC_example_SIS_I0_1.png" width=40%  style="border:0; position:absolute; top:47%; left:30%">
+    </span>
+</section>
+
+
+
+<section>
+    <h3>Analogy SIS and mean-field directed percolation</h3>
+    <span class="fragment fade-out" data-fragment-index="10">
+    <span class="fragment fade-in" data-fragment-index="1">
+    <div style="position:absolute; top:15%; left: 2%; width:46%; text-align:left">
+        Continuous-time Markov chain with system state $x(t) = [S,I](t)$ and
+        <br><br>
+        <div align=center>
+            $[S,I] \to [S+1,I-1]\,$ with rate $\,\mu I\phantom{\frac{S}{N}}$
+            <br>
+            $[S,I] \to [S-1,I+1]\,$ with rate  $\,\lambda I\frac{S}{N}$
+        </div>
+    </div>
+    </span>
+    </span>
+    <span class="fragment fade-out" data-fragment-index="10">
+    <span class="fragment fade-in" data-fragment-index="2">
+    <div style="position:absolute; top:50%; left:2%; width:96%; text-align:left">
+        Change of perspective: look at state of each individual $s_i = \{S,I\} = \{0, 1\}$
+        <ul>
+        <li class="fragment fade-in" data-fragment-index="3"> each individual has fixed interaction partner [MF: full system $N$]</li>
+        <li class="fragment fade-in" data-fragment-index="4"> each individual has $n_i(t)$ actively infected neighbors [MF: $n_i(t)=I(t)$]</li>
+        </ul>
+        <br><br>
+        <span class="fragment fade-in" data-fragment-index="5">
+        Rate of state change:
+        <br><br>
+            <div style="padding-left:10%">
+                $ a[1\to 0,n] = \mu$
+                <br>
+                $ a[0\to 1,n] = \frac{\lambda n}{N} = \lambda\frac{I}{N}$ (focus here on all the susceptible that can transition)
+            </div>
+        </span>
+    </div>
+    </span>
+    </span>
+
+    <span class="fragment fade-in" data-fragment-index="10">
+    <div style="position:absolute; top:15%; left: 2%; width:46%; text-align:left">
+        State of each individual $s_i = \{S,I\} = \{0, 1\}$
+        <br><br>
+        <div style="padding-left:10%">
+            $ a[1\to 0,n] = \mu$
+            <br>
+            $ a[0\to 1,n] = \frac{\lambda n}{N}$
+        </div>
+        <br>
+        This is the mean-field contact process, a non-equilibrium statistical
+        physics model from the directed percolation universality class.
+    </div>
+    </span>
+
+    <span class="fragment fade-in" data-fragment-index="11">
+        <img src="./sources/2015_pastor-satorras_rev-mod-phys_fig3.png" width=35%  style="border:0; position:absolute; top:15%; left:60%">
+    </span>
+
+    <span class="fragment fade-in" data-fragment-index="12">
+    <div style="position:absolute; top:60%; left:2%; width:96%; text-align:left">
+        Mean-field critical point: $\lambda_c = \mu$.
+        <br>
+        This corresponds for disease spread to the epidemic threshold $\lambda/\mu \gt 1$
+        <br><br>
+        Features of critical point:
+        <ul>
+            <li> correlation lengths diverge (MF only autocorrelation time $\tau\sim|\lambda-\lambda_c|^{-1}$) </li>
+            <li> For large systems, epidemic dies out algebraically as $\rho(t)\sim t^{-\alpha}$ (MF $\alpha=1$)</li>
+        </ul>
+    </div>
+    </span>
+</section>
+
+
+<section>
+    <h3>Deviation from mean-field behavior</h3>
+    <h4>Extreme case: 1D Ring</h4>
+
+    <span class="fragment fade-in" data-fragment-index="1">
+    <div style="position:absolute; top:15%; left:50%; width:50%">
+        <img src="./sources/covid/SIR_ring.svg" width=60%  style="border:0; box-shadow:none;">
+    </div>
+    </span>
+    <div style="position:absolute; top:17%; left: 2%; width:50%; text-align:left">
+        <ul>
+            <li class="fragment fade-in" data-fragment-index="2">each individual has 2 interaction partner</li>
+            <li class="fragment fade-in" data-fragment-index="3">each $i$ has $n_i(t)=\{0,1,2\}$ infected neighbors and they are different for each $i$</li>
+        </ul>
+        <br><br>
+        <span class="fragment fade-in" data-fragment-index="5">
+        Rate of state change:
+        <br>
+            <div style="padding-left:10%">
+                $ a[1\to 0,n] = \mu$
+                <br>
+                $ a[0\to 1,n] = \frac{\lambda n}{2}$
+            </div>
+        </span>
+    </div>
+    </span>
+
+    <span class="fragment fade-out" data-fragment-index="20">
+    <div style="position:absolute; top:57%; left: 2%; width:96%; text-align:left">
+        <span class="fragment fade-in" data-fragment-index="5">
+        Interpretation:
+        <ul>
+            <li class="fragment fade-in" data-fragment-index="6">$\lambda$ is rate of node $j$ to meet any of it's neighbors such that it meets each neighbor with rate $\lambda/2$</li>
+            <li class="fragment fade-in" data-fragment-index="7">Node $i$ is thus infected at rate $\lambda/2$ from any of the infected neighbors $n_i$</li>
+        </ul>
+        </span>
+        <br><br>
+        <span class="fragment fade-in" data-fragment-index="10">
+        Breakout rooms:
+        <ol>
+            <li> How does the epidemic threshold of an SIS model (MF: $\lambda_c=1$) change for 1D Ring? Can you estimate a number?</li>
+            <li> How would 1D Ring affect the spread for an SIR model?</li>
+        </ol>
+        </span>
+    </div>
+    </span>
+
+
+    <span class="fragment fade-out" data-fragment-index="30">
+    <span class="fragment fade-in" data-fragment-index="20">
+        <img src="./sources/custom/zierenberg_cp_1D.png" width=40%  style="border:0; position:absolute; top:40%; left:55%">
+    </span>
+    <div style="position:absolute; top:57%; left: 2%; width:52%; text-align:left">
+        <span class="fragment fade-in" data-fragment-index="21">
+            Critical point of 1D contact process at $\lambda_c/\mu \approx 3.3$.
+        </span>
+        <br><br>
+        <span class="fragment fade-in" data-fragment-index="22">
+           Epidemic threshold of SIS model $R_0=\lambda/\mu \gt 3.3$.
+        </span>
+        <br><br>
+        <span class="fragment fade-in" data-fragment-index="23">
+            In order to spread along the ring, every node has to pass on the disease with high probability.<br>
+            In addition, a lot of potential infections are "lost" at other already infected nodes.
+        </span>
+    </div>
+    </span>
+
+    <div style="position:absolute; top:57%; left: 2%; width:96%; text-align:left">
+        <span class="fragment fade-in" data-fragment-index="30">
+            For SIR infection has to come from neighbor who clearly cannot be infected again.
+        </span>
+        <br><br>
+        <span class="fragment fade-in" data-fragment-index="31">
+            With each new infection, the epidemic hence can die out with probability:
+            $$p(\text{no subsequent infection}) = \frac{\mu}{\mu+\lambda}$$
+        </span>
+        <span class="fragment fade-in" data-fragment-index="32">
+            Parts of the system are thus protected from isolation!
+        </span>
+    </div>
+
+
+    <div style="position:absolute; bottom:1%; left:1.0%; width=98%; text-align:left">
+        <small>
+        <br>
+        <span class="fragment fade-in" data-fragment-index="22">Henkel, Hinrichsen, Lübeck, "Non-Equilibrium Phase Transitions" (2008).</span><br>
+        </small>
+    </div>
+</section>
+
+
+<section>
+    <h3>Disease spread on networks</h3>
+    <div style="position:absolute; top:15%; left: 2%; width:96%; text-align:left">
+        <span class="fragment fade-in" data-fragment-index="1">
+        So far I assumed that each individual meets another at rate $\lambda$ (valid description for mean field and regular networks).
+        </span>
+        <br><br>
+        <span class="fragment fade-in" data-fragment-index="2">
+        In order to incorporate heterogeneity in the interaction behavior, we
+        can instead consider a network of interactions with interaction rate
+        $\tilde{\lambda}$ between individuals.
+        </span>
+        <br><br>
+        <div class="fragment fade-in" data-fragment-index="3" align=center>
+            Mean-Field: $\tilde{\lambda} = \frac{\lambda}{N}$<br>
+            1D Ring: $\tilde{\lambda} = \frac{\lambda}{2}$
+        </div>
+        <br><br>
+        <div class="fragment fade-in" data-fragment-index="4" align=center>
+            But what is a network?
+        </div>
+    </div>
+</section>
+
+
+<section>
+    <h3>Disease spread on networks</h3>
+    <h4>What is a network?</h4>
+
+    <span class="fragment fade-out" data-fragment-index="5">
+    <span class="fragment fade-in" data-fragment-index="1">
+    <div style="position:absolute; top:20%; left:50%; width:50%">
+        <img src="./sources/covid/SIR_ring.svg" width=60%  style="border:0; box-shadow:none;">
+    </div>
+    </span>
+    </span>
+    <span class="fragment fade-in" data-fragment-index="5">
+    <div style="position:absolute; top:15%; left:50%; width:50%">
+        <img src="./sources/wikipedia_network.png" width=60%  style="border:0; box-shadow:none;">
+    </div>
+    </span>
+
+    <div style="position:absolute; top:20%; left: 2%; width:50%; text-align:left">
+        <span class="fragment fade-in" data-fragment-index="2">
+            Networks are mathematically described as graphs.
+        </span>
+        <br><br>
+        <span class="fragment fade-in" data-fragment-index="3">
+            A graph is a collection of $N$ points (vertices) and $L$ connections (edges).
+        </span>
+        <br><br>
+    </div>
+    <div style="position:absolute; top:45%; left: 2%; width:96%; text-align:left">
+        <span class="fragment fade-in" data-fragment-index="6">
+            In case of disease spread, the individuals (or groups of
+            individuals) are represented by vertices and the potentially
+            infectious interaction between them as edges.
+        </span>
+        <br><br>
+        <span class="fragment fade-in" data-fragment-index="7">
+            Edges can be directed or undirected. Edges can in principle be weighted.
+        </span>
+        <br><br>
+        <span class="fragment fade-in" data-fragment-index="8">
+            $N\times N$ adjacency matrix describes interactions with elements $a_{ij}=\{0,1\}$ (unweighted case).
+        </span>
+        <br><br>
+        <span class="fragment fade-in" data-fragment-index="10">
+            A path between $i_0$ and $i_n$ is a sequence of connected edges with the number of edges $=$ length.
+        </span>
+        <br><br>
+        <span class="fragment fade-in" data-fragment-index="10">
+            Graph is called connected if there exists a path between any two vertices.
+        </span>
+        <br><br>
+    </div>
+
+
+    <div style="position:absolute; bottom:1%; left:1.0%; width=98%; text-align:left">
+      <small>
+        <br>
+        <span class="fragment fade-in" data-fragment-index="5"> Source: Wikimedia Commons</span><br>
+      </small>
+    </div>
+</section>
+
+
+
+
+<section>
+    <h3>Disease spread on networks</h3>
+    <h4>Network metrics (selection)</h4>
+
+    <span class="fragment fade-out" data-fragment-index="10">
+    <div style="position:absolute; top:15%; left:50%; width:50%">
+        <img src="./sources/wikipedia_network.png" width=60%  style="border:0; box-shadow:none;">
+    </div>
+    </span>
+    <span class="fragment fade-in" data-fragment-index="10">
+    <div style="position:absolute; top:20%; left:50%; width:50%">
+        <img src="./sources/covid/SIR_ring.svg" width=60%  style="border:0; box-shadow:none;">
+    </div>
+    </span>
+
+    <div style="position:absolute; top:20%; left: 2%; width:50%; text-align:left">
+         <b>Shortest path length:</b>
+        <br>
+        Shortest path length $l_{ij}$ between two nodes $i$ and $j$ is defined as the length of the shortest path joining $i$ and $j$. <br>
+        The shortest path is not necessarily unique.
+        <br><br>
+    </div>
+
+    <span class="fragment fade-in" data-fragment-index="10">
+    <div style="position:absolute; top:50%; left: 2%; width:96%; text-align:left">
+            <u>1D Ring:</u>
+        <br><br>
+            Shortest path between neighbors is 1<br><br>
+            In general: $l_{ij} = |i-j|$ (considering periodic boundary conditions)
+    </div>
+    </span>
+</section>
+
+
+
+<section>
+    <h3>Disease spread on networks</h3>
+    <h4>Network metrics (selection)</h4>
+
+    <span class="fragment fade-out" data-fragment-index="10">
+    <div style="position:absolute; top:15%; left:50%; width:50%">
+        <img src="./sources/wikipedia_network.png" width=60%  style="border:0; box-shadow:none;">
+    </div>
+    </span>
+    <span class="fragment fade-in" data-fragment-index="10">
+    <div style="position:absolute; top:20%; left:50%; width:50%">
+        <img src="./sources/covid/SIR_ring.svg" width=60%  style="border:0; box-shadow:none;">
+    </div>
+    </span>
+
+    <div style="position:absolute; top:20%; left: 2%; width:50%; text-align:left">
+        <b>Diameter</b>
+        <br>
+        The diameter of a network is the maximum value of all pairwise shortest path lengths ($\text{max}_{ij} l_{ij}$)
+    </div>
+
+    <span class="fragment fade-in" data-fragment-index="10">
+    <div style="position:absolute; top:50%; left: 2%; width:96%; text-align:left">
+            <u>1D Ring:</u>
+        <br><br>
+        Diameter is $\frac{N}{2}$ ($N$ even) or $\frac{N+1}{2}-1$ ($N$ odd).
+    </div>
+    </span>
+</section>
+
+<section>
+    <h3>Disease spread on networks</h3>
+    <h4>Network metrics (selection)</h4>
+
+    <span class="fragment fade-out" data-fragment-index="10">
+    <div style="position:absolute; top:15%; left:50%; width:50%">
+        <img src="./sources/wikipedia_network.png" width=60%  style="border:0; box-shadow:none;">
+    </div>
+    </span>
+    <span class="fragment fade-in" data-fragment-index="10">
+    <div style="position:absolute; top:20%; left:50%; width:50%">
+        <img src="./sources/covid/SIR_ring.svg" width=60%  style="border:0; box-shadow:none;">
+    </div>
+    </span>
+
+    <div style="position:absolute; top:20%; left: 2%; width:50%; text-align:left">
+        <b>Average shortest path length</b>
+        <br>
+        The average shortest path length $\langle l\rangle$ is the average of $l_{ij}$ over all pairs of vertices.
+    </div>
+
+    <span class="fragment fade-in" data-fragment-index="10">
+    <div style="position:absolute; top:50%; left: 2%; width:96%; text-align:left">
+            <u>1D Ring:</u>
+        <br><br>
+            $\langle l\rangle \approx \frac{N}{4}$
+    </div>
+    </span>
+</section>
+
+
+<section>
+    <h3>Disease spread on networks</h3>
+    <h4>Network metrics (selection)</h4>
+
+    <span class="fragment fade-out" data-fragment-index="10">
+    <div style="position:absolute; top:15%; left:50%; width:50%">
+        <img src="./sources/wikipedia_network.png" width=60%  style="border:0; box-shadow:none;">
+    </div>
+    </span>
+    <span class="fragment fade-in" data-fragment-index="10">
+    <div style="position:absolute; top:20%; left:50%; width:50%">
+        <img src="./sources/covid/SIR_ring.svg" width=60%  style="border:0; box-shadow:none;">
+    </div>
+    </span>
+
+    <div style="position:absolute; top:20%; left: 2%; width:50%; text-align:left">
+        <b>Degree</b>
+        <br>
+        The degree $k_i$ of vertex $i$ is the number of edges connected to $i$, $k_i=\sum_j a_{ij}$.
+        <br>
+        For directed networks one distinguishes between in-degree $k_i^\text{in}$ and out-degree $k_i^\mathrm{out}$ as the number of edges that end in $i$ or start from $i$, respectively.
+    </div>
+
+    <span class="fragment fade-in" data-fragment-index="10">
+    <div style="position:absolute; top:60%; left: 2%; width:96%; text-align:left">
+            <u>1D Ring:</u>
+        <br><br>
+            $k_i=2$
+    </div>
+    </span>
+</section>
+
+
+<section>
+    <h3>Disease spread on networks</h3>
+    <h4>Network metrics (selection)</h4>
+
+    <span class="fragment fade-out" data-fragment-index="10">
+    <div style="position:absolute; top:15%; left:50%; width:50%">
+        <img src="./sources/wikipedia_network.png" width=60%  style="border:0; box-shadow:none;">
+    </div>
+    </span>
+    <span class="fragment fade-in" data-fragment-index="10">
+    <div style="position:absolute; top:20%; left:50%; width:50%">
+        <img src="./sources/covid/SIR_ring.svg" width=60%  style="border:0; box-shadow:none;">
+    </div>
+    </span>
+
+    <div style="position:absolute; top:20%; left: 2%; width:50%; text-align:left">
+        <b>Degree distribution</b>
+        <br>
+        The degree distribution $P(k)$ is the probability that a randomly chosen vertex has degree $k$.
+        <br>
+        For directed networks again distinguished between in- and out-degree.
+        <br><br>
+        First moment of distribution $\langle k\rangle = 2L/N$ characterizes the density of network
+    </div>
+
+    <span class="fragment fade-in" data-fragment-index="10">
+    <div style="position:absolute; top:65%; left: 2%; width:96%; text-align:left">
+            <u>1D Ring:</u>
+        <br><br>
+        $P(k) = \delta_{k,2}$
+        <br><br>
+        $\langle k\rangle = 2$
+    </div>
+    </span>
+</section>
+
+
+
+
+<section>
+    <h3>Disease spread on networks</h3>
+    <h4>Network metrics (selection)</h4>
+
+    <span class="fragment fade-out" data-fragment-index="10">
+    <div style="position:absolute; top:15%; left:50%; width:50%">
+        <img src="./sources/wikipedia_network.png" width=60%  style="border:0; box-shadow:none;">
+    </div>
+    </span>
+    <span class="fragment fade-in" data-fragment-index="10">
+    <div style="position:absolute; top:20%; left:50%; width:50%">
+        <img src="./sources/covid/SIR_ring.svg" width=60%  style="border:0; box-shadow:none;">
+    </div>
+    </span>
+    <span class="fragment fade-in" data-fragment-index="5">
+        <img src="./sources/wikipedia_clustering.png" height=80%  style="border:0; box-shadow:none;position:absolute; top:10%; right:2%">
+    </span>
+
+    <div style="position:absolute; top:20%; left: 2%; width:50%; text-align:left">
+        <b>Clustering coefficient</b>
+        <br>
+        The clustering coefficient characterizes how densely connected local neighborhoods are and can be calculated as the average over local clustering coefficients $\langle c\rangle$.
+        <br>
+        Local clustering $c_i$ measures the ratio between the actual number of edges among neighbors of vertex $i$ and the maximal number of possible edges.
+
+        $$
+        c_i = \frac{\sum_{j,k}A_{ij}A_{jk}A_{ki}}{k_i(k_i-1)}
+        $$
+    </div>
+
+    <span class="fragment fade-in" data-fragment-index="10">
+    <div style="position:absolute; top:80%; left: 2%; width:96%; text-align:left">
+            <u>1D Ring:</u>
+        <br><br>
+            $c_i=0$ [HOWEVER: 1D system with nearest-neighbor connections has high clustering coefficient]
+    </div>
+    </span>
+</section>
+
+
+<section>
+    <h3>Disease spread on networks</h3>
+    <h4>Network classes (selection)</h4>
+
+    <span class="fragment fade-out" data-fragment-index="10">
+    <div style="position:absolute; top:20%; left:50%; width:50%">
+        <img src="./sources/covid/SIR_ring.svg" width=60%  style="border:0; box-shadow:none;">
+    </div>
+    </span>
+
+    <span class="fragment fade-in" data-fragment-index="10">
+        <img src="./sources/epipack_example_lattice.gif" height=70%  style="border:0; box-shadow:none;position:absolute; top:20%; right:10%">
+    </span>
+
+    <div style="position:absolute; top:20%; left: 2%; width:50%; text-align:left">
+        <b>Lattice</b>
+        <br>
+        <ul>
+            <li> spatial structure</li>
+            <li> can be regular with $P(k)$ Kronecker-Delta</li>
+            <li> can be disordered</li>
+        </ul>
+    </div>
+
+
+    <div style="position:absolute; bottom:1%; left:1.0%; width=98%; text-align:left">
+      <small>
+        <br>
+        <span class="fragment fade-in" data-fragment-index="10"> Source: epipack</span><br>
+      </small>
+    </div>
+</section>
+
+
+<section>
+    <h3>Disease spread on networks</h3>
+    <h4>Network classes (selection)</h4>
+
+    <span class="fragment fade-out" data-fragment-index="10">
+    <div style="position:absolute; top:20%; left:50%; width:50%">
+        <img src="./sources/wikipedia_network.png" width=60%  style="border:0; box-shadow:none;">
+    </div>
+    </span>
+
+    <span class="fragment fade-in" data-fragment-index="10">
+        <img src="./sources/epipack_example_random_SIRS_visualization.gif" height=70%  style="border:0; box-shadow:none;position:absolute; top:20%; right:10%">
+    </span>
+
+    <div style="position:absolute; top:20%; left: 2%; width:50%; text-align:left">
+        <b>Random homogeneous networks (Erdos Renyi)</b>
+        <br>
+        <ul>
+            <li> $N$ nodes where each edge is realized with probability $p$</li>
+            <li> $P(k)=\binom{N}{k}p^k(1-p)^{N-k}$ binomial </li>
+            <li> $\langle k\rangle = pN$ </li>
+            <li> $\langle c\rangle = p$ </li>
+            <li> $\langle l\rangle = \frac{\log N}{\log\langle k\rangle}$ </li>
+            <li> connected for $p\gt \frac{\log N}{N}$</li>
+        </ul>
+        For $\langle k\rangle\gt 1$ network features small diameter observed in most real-world networks.
+    </div>
+
+    <span class="fragment fade-in" data-fragment-index="10">
+    <div style="position:absolute; top:80%; left: 2%; width:48%; text-align:left">
+        For SIS, a connected ER model agrees very well with mean-field.
+    </div>
+    </span>
+
+
+    <div style="position:absolute; bottom:1%; left:1.0%; width=98%; text-align:left">
+      <small>
+        <br>
+        <span class="fragment fade-in" data-fragment-index="10"> Source: epipack</span><br>
+      </small>
+    </div>
+</section>
+
+
+
+<section>
+    <h3>Disease spread on networks</h3>
+    <h4>Network classes (selection)</h4>
+
+    <div style="position:absolute; top:15%; left:50%; width:50%">
+        <img src="./sources/wikipedia_smallworld.png" width=60%  style="border:0; box-shadow:none;">
+    </div>
+
+
+
+    <div style="position:absolute; top:20%; left: 2%; width:55%; text-align:left">
+        <b>"Small-world network"</b>
+        <br>
+        Attempt to construct network with small diameter and large clustering coefficient.
+        <ul>
+            <li> Start from Ring with $N$ vertices each symmetrically connected to its $2m$ neighbors (large clustering and large avg. shortest path). </li>
+            <li> Rewire fraction of edges to introduce long-range shortcuts that reduce $\langle l\rangle$ while preserving large $\langle c\rangle$. </li>
+            <li> ATTENTION: There are different implementations and most of them typically do not interpolated between regular and random.</li>
+        </ul>
+    </div>
+    <span class="fragment fade-in" data-fragment-index="10">
+        <img src="./sources/2019_maier_sci-rep_fig1.png" width=45%  style="border:0; box-shadow:none;position:absolute; top:55%; left:55%">
+    </span>
+
+    <div style="position:absolute; bottom:1%; left:1.0%; width=98%; text-align:left">
+      <small>
+        <br>
+        <span class="fragment fade-in" data-fragment-index="10">Maier, Sci. Rep. (2019).</span><br>
+      </small>
+    </div>
+</section>
+
+
+<section>
+    <h3>Disease spread on networks</h3>
+    <h4>Real-world Networks (facebook)</h4>
+
+    <video width=40% controls style="position:absolute; top:17%; left:2%">
+        <source src="./sources/epipack_example_fb.mp4" type="video/mp4">
+    </video>
+
+    <div style="position:absolute; top:50%; left:50%; width:48%; text-align:left">
+        <span class="fragment fade-in" data-fragment-index="10">
+            Network structure can protect sub-communities from outbreak.
+        </span>
+    </div>
+    <div style="position:absolute; bottom:1%; left:1.0%; width=98%; text-align:left">
+      <small>
+        <br>
+        <span> Source: epipack</span><br>
+      </small>
+    </div>
+</section>
+
+
+<section>
+    <h3>Disease spread on networks</h3>
+    <h4>Real-world Networks (Copenhagen)</h4>
+
+    <span>
+        <img src="./sources/2014_stopczynski_plos_fig12.png" width=80%  style="border:0; box-shadow:none;position:absolute; top:15%; left:10%;">
+    </span>
+    <span class="fragment fade-in" data-fragment-index="1">
+    <div style="position:absolute; top:60%; left: 2%; width:50%; text-align:left">
+        Copenhagen Network Study.
+        <ul>
+            <li> 1000 participants got free phones.</li>
+            <li> Bluetooth signals recorded for 28 days to generate temporal interaction networks.</li>
+            <li> Also recorded and analysed phone calls and online activity.</li>
+        </ul>
+    </div>
+    </span>
+    <span class="fragment fade-in" data-fragment-index="1">
+    <div style="position:absolute; top:60%; left: 52%; width:50%; text-align:left">
+        Face-to-face network:
+        <ul>
+            <li> avg. degree: $\langle k\rangle =20.96$</li>
+            <li> avg. shortest path: $\langle l\rangle = 3.2$</li>
+            <li> avg. clustering: $\langle c\rangle = 7.1$</li>
+        </ul>
+    </div>
+    </span>
+
+    <span  class="fragment fade-in" data-fragment-index="10">
+        <img src="./sources/2016_sekara_pnas_fig1.png" width=40%  style="border:0; box-shadow:none; background-color:white; position:absolute; top:15%; left:50%;">
+    </span>
+
+    <div style="position:absolute; bottom:1%; left:1.0%; width=98%; text-align:left">
+      <small>
+        <br>
+        <span class="fragment fade-in" data-fragment-index="10">Sekara et al., PNAS (2016).</span><br>
+        <span>Stopczynski et al., PLoS ONE (2014).</span><br>
+      </small>
+    </div>
+</section>
+
+
+<section>
+    <h3>Disease spread on networks</h3>
+    <h4>Some remarks</h4>
+    <div style="position:absolute; top:20%; left:15%; width:70%; height:15%; text-align:left; border:0px; box-shadow:none; background:none;">
+        <ul>
+            <li class="fragment fade-in" data-fragment-index="1"> There is some ambiguity when it comes to averages (quenched, annealed).</li>
+            <li class="fragment fade-in" data-fragment-index="2"> When it comes to study potential outcomes of epidemics, it can be illustrative to look at distributions.</li>
+            <li class="fragment fade-in" data-fragment-index="3"> Common questions asked:
+                <ul>
+                    <li> What is the epidemic threshold?</li>
+                    <li> Who are the most influential spreaders? (hubs vs. $k$-core)</li>
+                    <li> What are efficient immunization protocols?</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section>
+    <h3>Disease spread on networks</h3>
+    <div style="position:absolute; top:12%; left:15%; width:70%; height:15%; text-align:left; border:0px; box-shadow:none; background:none;" data-markdown>
+        #### What have we learned?
+        * Networks structure can cause shift of epidemic threshold.
+        * Network structure can protect sub-communities from outbreak.
+        * Capturing features of real-world networks is very complicated.
+        * Real human interaction includes switching between different locations which can be modelled with temporal networks.
+    </div>
+
+    <span class="fragment fade-in" data-fragment-index="2">
+        <h3 style="position:absolute; top:65%; left:0%; width:100%; text-align:center;">Questions?</h3>
+    </span>
+</section>
+
+
+
+
+<!-- ############################################################################### -->
+<section>
+    <h3>Outline</h3>
+    <div style="position:absolute; top:15%; left:15%; width:70%; height:15%; text-align:left; border:3px; border-style:solid; border-color:#708090; padding: 0.2em;">
+        <h3 style="border:0; box-shadow:none; position:absolute; top:30%; left:0%; width:100%; text-align:center">General introduction</h3>
+    </div>
+
+    <div style="position:absolute; top:35%; left:15%; width:70%; height:15%;  text-align:left; border:3px; border-style:solid; border-color:#708090; padding: 0.2em;">
+        <h3 style="border:0; box-shadow:none; position:absolute; top:30%; left:0%; width:100%; text-align:center">Mathematical basics</h3>
+    </div>
+
+    <div style="position:absolute; top:55%; left:15%; width:70%; height:15%;  text-align:left; border:3px; border-style:solid; border-color:#708090; padding: 0.2em;">
+        <h3 style="border:0; box-shadow:none; position:absolute; top:30%; left:0%; width:100%; text-align:center">Disease spread on networks</h3>
+    </div>
+
+    <div style="position:absolute; top:75%; left:15%; width:70%; height:15%;  text-align:left; border:3px; border-style:solid; border-color:#708090; padding: 0.2em;">
+        <h3 style="border:0; box-shadow:none; position:absolute; top:30%; left:0%; width:100%; text-align:center">Non-Markovian disease spread</h3>
+    </div>
+</section>
+
+
+
+<!-- ############################################################################### -->
+<!-- ##################  Non-Markovian disease spread ############################## -->
+<!-- ############################################################################### -->
+
+
+<section>
+    <h3>Non-Markovian disease spread</h3>
+    <div style="position:absolute; top:15%; left:15%; width:70%; height:15%; text-align:left; border:0px; box-shadow:none; background:none;" data-markdown>
+        #### What we will talk about
+        * How valid is the Markovian approximation (Poisson process) for disease spread and disease progression?
+        * What happens when one considers non-Markovian dynamics instead?
+        * What are the difficulties?
+    </div>
+    <div style="position:absolute; top:50%; left:15%; width:70%; text-align:left "class="fragment fade-in" data-fragment-index="2"  data-markdown>
+        #### References
+        * Pastor-Satorras, Castellano, Van Mieghem, and Vespignani, Rev. Mod. Phys. (2015).
+        * Kiss, Miller, and Simon, "Mathematics of Epidemics on Networks: From Exact to Approximate Models", (Springer International Publishing, Cham, 2017).
+        * additional sources of examples are referenced at bottom of slides
+    </div>
+</section>
+
+
+<section>
+    <h3>Let us recall the SIS model</h3>
+    <span class="fragment fade-in" data-fragment-index="1">
+    <div style="position:absolute; top:15%; left: 2%; width:46%; text-align:left">
+        Continuous-time Markov chain with system state $x(t) = [S,I](t)$ and
+        <br><br>
+        <div align=center>
+            $[S,I] \to [S+1,I-1]\,$ with rate $\,\mu I\phantom{\frac{S}{N}}$
+            <br>
+            $[S,I] \to [S-1,I+1]\,$ with rate  $\,\lambda I\frac{S}{N}$
+        </div>
+    </div>
+    </span>
+    <span class="fragment fade-in" data-fragment-index="2">
+    <div style="position:absolute; top:15%; left:52%; width:46%; text-align:left">
+        Deterministic formulation with set of differential equations
+        <br><br>
+        <div align=center>
+        $\dot{S} = -\lambda\frac{S}{N} I + \mu I$
+        <br>
+        $\dot{I} = +\lambda\frac{S}{N} I - \mu I$
+        </div>
+    </div>
+    </span>
+
+    <span class="fragment fade-in" data-fragment-index="3">
+        <img src="./sources/custom/kineticMC_example_SIS_I0_1.png" width=40%  style="border:0; position:absolute; top:47%; left:55%">
+    </span>
+
+
+    <span class="fragment fade-in" data-fragment-index="4">
+    <div style="position:absolute; top:50%; left:2%; width:46%; text-align:left">
+        Recall that both recovery and infection are Poisson processes.
+    </div>
+    </span>
+</section>
+
+
+<section>
+    <h3>Infection as a Poisson process</h3>
+    <h4 class="fragment fade-in" data-fragment-index="10">Exponential distribution of inter-infection times</h4>
+
+    <span class="fragment fade-out" data-fragment-index="10">
+    <span class="fragment fade-in" data-fragment-index="1">
+    <div style="position:absolute; top:15%; left: 2%; width:46%; text-align:left">
+        Consider individual $i$ interacting with $k_i$ others.
+        <br><br>
+        If $\tilde{\lambda}$ is the rate to transmit the disease along a connection, then total rate of infection from this individual is
+        <br>
+        $\lambda_i = k_i\tilde{\lambda}$
+        <br><br>
+        Reason: Independent Poisson processes can be merged
+    </div>
+    </span>
+    <span class="fragment fade-in" data-fragment-index="2">
+        <img src="./sources/kineticMonteCarlo_gillespie_derivation.svg" width=50%  style="border:0; box-shadow:none; position:absolute; top:12%; left:50%">
+    </span>
+    </span>
+
+
+    <div class="fragment fade-in" data-fragment-index="10" style="position:absolute; top:20%; left: 5%; width:45%; text-align:center">
+        $P(x, \lambda) = \lambda e^{-\lambda x}$
+    </div>
+    <div class="fragment fade-in" data-fragment-index="10" style="position:absolute; top:25%; left:5%; width:45%">
+        <img src="./sources/wikipedia_File_Exponential_probability_density.svg" width=100% style="border:0; box-shadow:none; background:none;">
+    </div>
+    <div class="fragment fade-in" data-fragment-index="11" style="position:absolute; top:20%; left: 55%; width:45%; text-align:center">
+        $P(X\leq x, \lambda) = 1 - e^{-\lambda x}$
+    </div>
+    <div class="fragment fade-in" data-fragment-index="11" style="position:absolute; top:25%; left:55%; width:45%">
+        <img src="./sources/wikipedia_File_Exponential_cdf.svg" width=100% style="border:0; box-shadow:none; background:none;">
+    </div>
+
+    <div style="position:absolute; bottom:1%; left:1.0%; width=98%; text-align:left">
+      <small>
+        <br>
+        <span class="fragment fade-in" data-fragment-index="10">Source: Wikimedia Commons</span><br>
+      </small>
+    </div>
+</section>
+
+<section>
+    <h3>Infection as a Poisson process?</h3>
+
+    <span class="fragment fade-out" data-fragment-index="10">
+    <div class="fragment fade-in" data-fragment-index="1" style="position:absolute; top:10%; left:50%; width:50%">
+        <img src="./sources/zierenberg_weibull_contact_trains.svg" width=100% style="clip-path:inset(00% 14.6% 0% 0%); border:0; box-shadow:none; background:none;">
+    </div>
+    </span>
+    <div class="fragment fade-in" data-fragment-index="10" style="position:absolute; top:10%; left:50%; width:50%">
+        <img src="./sources/zierenberg_weibull_contact_trains.svg" width=100% style="border:0; box-shadow:none; background:none;">
+    </div>
+
+    <div style="position:absolute; top:15%; left: 2%; width:46%; text-align:left">
+        <span class="fragment fade-in" data-fragment-index="2">
+        What are we missing?
+        </span>
+        <br><br>
+        <ul>
+            <li class="fragment fade-in" data-fragment-index="3">Humans often meet people in clusters, so there should be some spatio-temporal correlation.</li>
+            <li class="fragment fade-in" data-fragment-index="4">Contact behavior typically depends on the day of the week.</li>
+        </ul>
+        <br><br>
+        <span class="fragment fade-in" data-fragment-index="10">
+            Proposal: Weibull distributed infection times
+        </span>
+    </div>
+    </span>
+
+    <span class="fragment fade-in-then-out" data-fragment-index="11">
+        <img src="./sources/2013_vanmieghem_prl_fig4.png" width=50%  style="border:0; position:absolute; top:10%; left:50%">
+    </span>
+
+    <div style="position:absolute; bottom:1%; left:1.0%; width=98%; text-align:left">
+      <small>
+        <br>
+        <span class="fragment fade-in" data-fragment-index="10">Van Mieghem and van de Bovenkamp, Phys. Rev. Lett. (2013).</span><br>
+      </small>
+    </div>
+</section>
+
+
+<section>
+    <h3>Infection as a Weibull renewal process?</h3>
+    <img src="./sources/2013_vanmieghem_prl_fig4.png" width=35%  style="border:0; position:absolute; top:10%; left:55%">
+    <div style="position:absolute; top:15%; left: 2%; width:46%; text-align:left">
+        <span class="fragment fade-in" data-fragment-index="1">
+            Recovery still Poisson with rate $\mu$ and exponentially
+            distributed recovery times.
+        </span>
+        <br><br>
+        <span class="fragment fade-in" data-fragment-index="2">
+            Infection time per link is Weibull distributed (infection only
+            realised if infection time $\lt$ recovery time)
+        </span>
+        <br><br>
+    </div>
+    </span>
+
+    <span class="fragment fade-in" data-fragment-index="10">
+    <div style="position:absolute; top:52%; left:5%; width:35%; text-align:center">
+        <small>Random homogeneous network</small>
+    </div>
+        <img src="./sources/2013_vanmieghem_prl_fig1.png" width=100%  style="border:0;position:absolute; top:54%; left:5%; width:35%;">
+    </span>
+    <span class="fragment fade-in" data-fragment-index="11">
+    <div style="position:absolute; top:52%; left:55%; width:35%; text-align:center">
+        <small>Rectangular lattice</small>
+    </div>
+    <img src="./sources/2013_vanmieghem_prl_fig3.png" width=100%  style="border:0;position:absolute; top:54%; left:55%; width:35%;">
+    </span>
+
+    <div style="position:absolute; bottom:1%; left:1.0%; width=98%; text-align:left">
+      <small>
+        <br>
+        <span>Van Mieghem and van de Bovenkamp, Phys. Rev. Lett. (2013).</span><br>
+      </small>
+    </div>
+</section>
+
+
+<section>
+    <h3>What can we learn from data?</h3>
+    <h4 class="fragment fade-in" data-fragment-index="1">Copenhagen Network Study</h4>
+
+    <span class="fragment fade-out" data-fragment-index="20">
+    <span class="fragment fade-in" data-fragment-index="1">
+    <div style="position:absolute; top:70%; left: 2%; width:50%; text-align:left">
+        Copenhagen Network Study.
+        <ul>
+            <li> 1000 participants got free phones.</li>
+            <li> Bluetooth signals recorded for 28 days to generate temporal interaction networks.</li>
+        </ul>
+    </div>
+    </span>
+    </span>
+    <span  class="fragment fade-in-then-out" data-fragment-index="2">
+        <img src="./sources/2014_stopczynski_fig1.png" width=70%  style="border:0; position:absolute; top:20%; left:15%">
+    </span>
+    <span  class="fragment fade-in-then-out" data-fragment-index="3">
+        <img src="./sources/2014_stopczynski_fig4.png" width=50%  style="border:0; position:absolute; top:20%; left:25%">
+    </span>
+    <span  class="fragment fade-in-then-out" data-fragment-index="4">
+        <img src="./sources/2014_stopczynski_fig8.png" width=50%  style="border:0; position:absolute; top:10%; left:50%">
+    </span>
+
+    <span  class="fragment fade-in" data-fragment-index="10">
+        <img src="./sources/custom/zierenberg_2021_fig1.png" width=35%  style="border:0; position:absolute; top:17%; left:2%">
+    </span>
+    <span  class="fragment fade-in" data-fragment-index="20">
+        <img src="./sources/custom/zierenberg_2021_fig2.png" width=55%  style="border:0; position:absolute; top:17%; left:42%">
+    </span>
+
+    <span class="fragment fade-in" data-fragment-index="20">
+    <div style="position:absolute; top:72%; left: 2%; width:45%; text-align:left">
+        <ul>
+            <li class="fragment fade-in" data-fragment-index="21"> There is a clear weekly structure in<br> encounter rate (inhom. Poisson).</li>
+            <li class="fragment fade-in" data-fragment-index="22"> There is clear clustering (Weibull distributed inter-encounter intervals plus correlation).</li>
+        </ul>
+    </div>
+    </span>
+
+    <div style="position:absolute; bottom:1%; left:1.0%; width=98%; text-align:left">
+      <small>
+        <br>
+        <span class="fragment fade-in" data-fragment-index="1">Sapiezynski et al., Scientific Data (2019).</span><br>
+        <span class="fragment fade-in" data-fragment-index="1">Stopczynski et al., Plos One (2014).</span><br>
+      </small>
+    </div>
+</section>
+
+<section>
+    <h3>Disease progression as a Poisson process?</h3>
+    <img src="./sources/covid/2020_Cevik_disease_development.png" width=50%  style="border:0; box-shadow:none; position:absolute; top:15%; left:0%">
+
+    <div style="position:absolute; top:20%; left: 52%; width:50%; text-align:left">
+        <span class="fragment fade-in" data-fragment-index="1">
+            This cannot be described by a single Poisson recovery process.
+        </span>
+        <br><br>
+        <span class="fragment fade-in" data-fragment-index="2">
+            Obvious extension:<br>
+            Several compartments (introducing exposed state) with duration
+            exponentially distributed?
+        </span>
+        <br><br>
+    </div>
+
+    <div class="fragment fade-in" data-fragment-index="10" style="position:absolute; top:50%; left:55%; width:35%">
+        <img src="./sources/wikipedia_File_Exponential_probability_density.svg" width=100% style="border:0; box-shadow:none; background:none;">
+    </div>
+
+    <span  class="fragment fade-in" data-fragment-index="11">
+        <img src="./sources/custom/zierenberg_2021_fig4a.png" width=40%  style="clip-path:inset(50% 0 0 0 ); border:0; position:absolute; top:44%; left:6%">
+    </span>
+
+
+    <div style="position:absolute; bottom:1%; left:1.0%; width=98%; text-align:left">
+      <small>
+        <br>
+        <span class="fragment fade-in" data-fragment-index="10">Source: Wikimedia Commons</span><br>
+        Cevik et al., BMJ (2020).<br>
+      </small>
+    </div>
+</section>
+
+<section>
+    <h3>Disease progression with Gamma-distributed periods?</h3>
+
+    <div style="position:absolute; top:15%; left: 2%; width:42%; text-align:left">
+        <span class="fragment fade-in" data-fragment-index="1">
+        Gamma distribution<br>
+        $P(\Delta t, k, \mu) = \frac{\mu^k}{\Gamma(k)}\Delta t^{k-1} e^{-\mu\Delta t}$
+        <br><br>
+        Interpolates between exponential ($k=1$) and delta ($k\to\infty$) distribution.
+        </span>
+        <br><br>
+        <span class="fragment fade-in" data-fragment-index="2">
+        </span>
+        <br><br>
+    </div>
+
+    <span  class="fragment fade-in" data-fragment-index="20">
+        <img src="./sources/custom/zierenberg_2021_fig3.png" width=55%  style="border:0; position:absolute; top:10%; left:45%">
+        <img src="./sources/custom/zierenberg_2021_fig1.png" width=25%  style="border:0; position:absolute; top:62%; left:60%">
+    </span>
+
+    </span>
+    <img src="./sources/custom/zierenberg_2021_fig4a.png" width=40%  style="border:0; box-shadow:none; position:absolute; top:44%; left:6%">
+</section>
+
+
+<section>
+    <h3>Non-Markovian disease spread</h3>
+    <div style="position:absolute; top:15%; left:15%; width:70%; height:15%; text-align:left; border:0px; box-shadow:none; background:none;" data-markdown>
+        #### What have we learned?
+        * Markovian approximation is not too bad as long as infectious period is longer than typical variability in spreading behavior.
+        * Consindering non-Markovian dynamics may be essential once disease progression and disease spread change on the same scale.
+        * Non-Markovian dynamics are difficult to study analytically and computationally costly.
+    </div>
+
+    <span class="fragment fade-in" data-fragment-index="2">
+        <h3 style="position:absolute; top:70%; left:0%; width:100%; text-align:center;">Questions?</h3>
+    </span>
+
+</section>
 
 </div>
 </div>
