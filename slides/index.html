@@ -2087,10 +2087,120 @@
 
 
 <section>
-    <h3>Infection as a Poisson process</h3>
-    <h4 class="fragment fade-in" data-fragment-index="10">Exponential distribution of inter-infection times</h4>
-
+    <h3>Homogeneous Poisson process</h3>
     <span class="fragment fade-out" data-fragment-index="10">
+    <span class="fragment fade-in" data-fragment-index="1">
+    <div style="position:absolute; top:12%; left: 2%; width:46%; text-align:left">
+        Counting process:<br>
+        <ul>
+            <li>$N(t) \geq 0$ </li>
+            <li>$N(t)\in \mathbb{N}_0$ </li>
+            <li>$s\leq t \to N(s)\leq N(t)$</li>
+        </ul>
+        <br>
+        with rate $\lambda\gt 0$ and<br>
+        <ul>
+            <li>$N(0)=0$ </li>
+            <li>indep. increments </li>
+            <li>number events in interval $\Delta T$ is Poisson random variable with mean $\lambda\Delta T$</li>
+        </ul>
+        <br>
+        Consequences:
+    </div>
+    </span>
+    <span class="fragment fade-in" data-fragment-index="2">
+        <img src="./sources/kineticMonteCarlo_gillespie_derivation.svg" width=50%  style="border:0; box-shadow:none; position:absolute; top:12%; left:50%">
+    </span>
+    <span class="fragment fade-in" data-fragment-index="3">
+    <div style="position:absolute; top:67%; left: 2%; width:96%; text-align:left">
+        <br>
+        Expected number of events after time $t$: $\mathbb{E}[N(t)]=\lambda t$
+        <br><br>
+        Distribution of events is Poisson: $P(N(t)=n) = \frac{(\lambda t)^n}{n!}e^{-\lambda t}$
+    </div>
+    </span>
+    </span>
+
+</section>
+
+<section>
+    <h3>Homogeneous Poisson process</h3>
+    <h4>Exponential distribution of inter-event times</h4>
+
+    <span class="fragment fade-in" data-fragment-index="1">
+    <div style="position:absolute; top:17%; left: 2%; width:96%; text-align:left">
+        Probability to not observe event in $[0,t)$:<br> $P(N(t)=0) = \frac{(\lambda t)^0}{0!}e^{-\lambda t}=e^{-\lambda t}$
+        <br><br>
+        <span class="fragment fade-in" data-fragment-index="2">
+            Probability that first event is smaller than t<br>
+            $P(T_1 \leq t) = 1 - P(\text{no event in }[0,t)) = 1 - e^{-\lambda t}$
+        <br>
+        = cumulative distribution function of exp. dist.
+        <br><br>
+        Prob. that time to second event < t<br>
+        $P(T_2\leq t) = 1 - P(\text{no event in }[s,s+t)|T_1=s)$<br>
+        $\phantom{P(T_2\leq t)} = 1 - P(\text{no event in }[s,s+t)$<br>
+        $\phantom{P(T_2\leq t)} = 1 - e^{-\lambda t} = CDF$<br>
+        where we used property of indep. increments.
+        </span>
+        <br><br>
+        <span class="fragment fade-in" data-fragment-index="3">
+         This can be continued for all inter-event times $T_i$ which are thus exponentially distributed.
+        </span>
+    </div>
+    </span>
+    <span class="fragment fade-in-then-out" data-fragment-index="1">
+        <img src="./sources/kineticMonteCarlo_gillespie_derivation.svg" width=45%  style="border:0; box-shadow:none; position:absolute; top:15%; left:55%">
+    </span>
+    <span class="fragment fade-in-then-out" data-fragment-index="2">
+        <img src="./sources/wikipedia_File_Exponential_cdf.svg" width=45%  style="border:0; box-shadow:none; position:absolute; top:15%; left:55%">
+    </span>
+    <span class="fragment fade-in-then-out" data-fragment-index="3">
+        <img src="./sources/wikipedia_File_Exponential_probability_density.svg" width=45%  style="border:0; box-shadow:none; position:absolute; top:15%; left:55%">
+    </span>
+    </span>
+
+    <div style="position:absolute; bottom:1%; left:1.0%; width=98%; text-align:left">
+      <small>
+        <br>
+        <span class="fragment fade-in" data-fragment-index="1">Source: Wikimedia Commons</span><br>
+      </small>
+    </div>
+</section>
+
+<section>
+    <h3>Homogeneous Poisson process</h3>
+    <h4>Memoryless</h4>
+
+    <span class="fragment fade-in" data-fragment-index="1">
+    <div style="position:absolute; top:17%; left: 2%; width:96%; text-align:left">
+        If $T_i$ exponentially distributed with $\lambda \gt 0$ then $T_i$ is memoryless random variable.
+        <br><br>
+        Memoryless definition: $P(T\gt s+t | T\gt s) = P(T\gt t)$
+        <br><br>
+        Cond. probability: $P(X|Y) = P(X\land Y)/P(Y)$
+        <br><br>
+        Thus:  $P(T\gt s+t) = P(T\gt t)P(T\gt s)$
+        <br>
+        This implies $P(T\gt a) = P(T\gt 1)^a = e^{a\ln P(T\gt a)} = e^{-\lambda a}$ with $\lambda = -\ln P(T\gt 1)$
+        <br>
+        We thus see that memoryless definition implies exponential distribution.
+        <br><br>
+        Check: $P(T) = \lambda e^{\lambda T}$
+        <br>
+        $P(T\gt x) = 1 - P(t\leq x) = 1-\int_0^x \lambda e^{-\lambda T} dT = e^{-\lambda T}$
+        <br>
+        Then $\frac{P(T\gt s+t)}{P(T\gt s)} = \frac{e^{-\lambda(s+t)}}{e^{-\lambda s}} = e^{-\lambda t} = P(T\gt t)$
+        <br><br>
+        This memoryless property is the basis on which we can merge Poisson processes!
+    </div>
+    </span>
+</section>
+
+<section>
+    <h3>Infection as a Poisson process?</h3>
+
+    <span class="fragment fade-out" data-fragment-index="5">
     <span class="fragment fade-in" data-fragment-index="1">
     <div style="position:absolute; top:15%; left: 2%; width:46%; text-align:left">
         Consider individual $i$ interacting with $k_i$ others.
@@ -2102,35 +2212,7 @@
         Reason: Independent Poisson processes can be merged
     </div>
     </span>
-    <span class="fragment fade-in" data-fragment-index="2">
-        <img src="./sources/kineticMonteCarlo_gillespie_derivation.svg" width=50%  style="border:0; box-shadow:none; position:absolute; top:12%; left:50%">
     </span>
-    </span>
-
-
-    <div class="fragment fade-in" data-fragment-index="10" style="position:absolute; top:20%; left: 5%; width:45%; text-align:center">
-        $P(x, \lambda) = \lambda e^{-\lambda x}$
-    </div>
-    <div class="fragment fade-in" data-fragment-index="10" style="position:absolute; top:25%; left:5%; width:45%">
-        <img src="./sources/wikipedia_File_Exponential_probability_density.svg" width=100% style="border:0; box-shadow:none; background:none;">
-    </div>
-    <div class="fragment fade-in" data-fragment-index="11" style="position:absolute; top:20%; left: 55%; width:45%; text-align:center">
-        $P(X\leq x, \lambda) = 1 - e^{-\lambda x}$
-    </div>
-    <div class="fragment fade-in" data-fragment-index="11" style="position:absolute; top:25%; left:55%; width:45%">
-        <img src="./sources/wikipedia_File_Exponential_cdf.svg" width=100% style="border:0; box-shadow:none; background:none;">
-    </div>
-
-    <div style="position:absolute; bottom:1%; left:1.0%; width=98%; text-align:left">
-      <small>
-        <br>
-        <span class="fragment fade-in" data-fragment-index="10">Source: Wikimedia Commons</span><br>
-      </small>
-    </div>
-</section>
-
-<section>
-    <h3>Infection as a Poisson process?</h3>
 
     <span class="fragment fade-out" data-fragment-index="10">
     <div class="fragment fade-in" data-fragment-index="1" style="position:absolute; top:10%; left:50%; width:50%">
@@ -2142,13 +2224,13 @@
     </div>
 
     <div style="position:absolute; top:15%; left: 2%; width:46%; text-align:left">
-        <span class="fragment fade-in" data-fragment-index="2">
+        <span class="fragment fade-in" data-fragment-index="5">
         What are we missing?
         </span>
         <br><br>
         <ul>
-            <li class="fragment fade-in" data-fragment-index="3">Humans often meet people in clusters, so there should be some spatio-temporal correlation.</li>
-            <li class="fragment fade-in" data-fragment-index="4">Contact behavior typically depends on the day of the week.</li>
+            <li class="fragment fade-in" data-fragment-index="6">Humans often meet people in clusters, so there should be some spatio-temporal correlation.</li>
+            <li class="fragment fade-in" data-fragment-index="7">Contact behavior typically depends on the day of the week.</li>
         </ul>
         <br><br>
         <span class="fragment fade-in" data-fragment-index="10">
